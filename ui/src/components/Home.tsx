@@ -1,56 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css';
-import Header from './Header'
-import { Tasks } from './Tasks'
-import CreateTask from './CreateTask'
-import { TaskService} from '../services/TaskService'
+import React, { useState, useEffect } from "react";
+
+import { SomethingService } from "../services/SomethingService";
+import Header from "./Header";
+
+type Something = {
+  name: string;
+};
 
 function Home() {
+  const [somethings, setSomethings] = useState<Something[]>([]);
 
-  const [tasks, setTasks] = useState([])
-  const [numberOfTasks, setNumberOfTasks] = useState<number>(0)
-  const [isTaskEdited, setTaskEdited] = useState(false)
-
-  const taskService = new TaskService();
+  const somethingService = new SomethingService();
 
   useEffect(() => {
-    taskService.getAllTasks().then(tasks => {
-        console.log(tasks)
-        setTasks(tasks)
-      });
-  }, [numberOfTasks, isTaskEdited])
+    somethingService.getAllSomethings().then((somethings) => {
+      console.log(somethings);
+      setSomethings(somethings);
+    });
+  }, []);
 
-
-  function delTask(taskId: number) {
-    taskService.deleteTask(taskId).then(response => {
-        console.log(response)
-        setNumberOfTasks(numberOfTasks - 1)
-      });
-  }
-
-  function taskCreated() {
-    setNumberOfTasks(numberOfTasks + 1)
-  }
-
-  function taskEdited(res: any) {
-     setTaskEdited(res)
-  }
-    
   return (
-    <div className="App">
-      <Header></Header>
-      <div className="container mrgnbtm">
-        <div className="row">
-          <div className="col-md-12">
-              <CreateTask taskCreated={taskCreated}></CreateTask>
-          </div>
-        </div>
-      </div>
-      <div className="container mrgnbtm">
-        <Tasks tasks={tasks} deleteTask={delTask} taskEdited={taskEdited}></Tasks>
-     </div> 
-  </div>
+    <div className='App'>
+      <Header />
+      Hello here are some somethings:
+      {(somethings ?? []).map((something) => (
+        <p key={something?.name}>{something?.name}</p>
+      ))}
+    </div>
   );
 }
 
