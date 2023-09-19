@@ -3,8 +3,8 @@ const path = require('path');
 import * as express from "express";
 import { APILogger } from "./logger/api.logger";
 import { TaskController } from "./controller/task.controller";
-import swaggerUi = require('swagger-ui-express');
-import fs = require('fs');
+// import swaggerUi = require('swagger-ui-express');
+// import fs = require('fs');
 
 class App {
 

@@ -6,7 +6,6 @@ let database: Mongoose.Connection;
 export const connect = () => {
 
     const url = process.env.MONGO_CONNECTION_STRING;
-    console.log("from connect: process.env.MONGO_CONNECTION_STRING :::",process.env.MONGO_CONNECTION_STRING)
 
     if (database) {
         return;

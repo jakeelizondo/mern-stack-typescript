@@ -1,0 +1,22 @@
+{
+  "version": "0.3.0",
+  "configurations": [
+    {
+      "name": "TS NODE",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--nolazy", "-r", "ts-node/register/transpile-only"],
+      "args": [
+        "-r",
+        "tsconfig-paths/register",
+        "index.ts",
+        "--project",
+        "${workspaceFolder}/tsconfig.json"
+      ],
+      "cwd": "${workspaceFolder}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
+    }
+  ]
+}
