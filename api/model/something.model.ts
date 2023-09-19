@@ -1,7 +1,7 @@
 import { model, Schema, Model, Document } from 'mongoose';
 
-export interface ITask extends Document {
-    task: string;
+export interface ISomething extends Document {
+    something: string;
     assignee: string;
     status: string;
     createDate: Date, 
@@ -11,8 +11,8 @@ export interface ITask extends Document {
     timestamps?: {};
 }
 
-const TaskSchema: Schema = new Schema({
-    task: { type: String, required: true },
+const SomethingSchema: Schema = new Schema({
+    something: { type: String, required: true },
     assignee: { type: String, required: true },
     status: { type: String, required: true },
     createDate: { type: Date, default: Date.now },
@@ -22,4 +22,4 @@ const TaskSchema: Schema = new Schema({
     timestamps: { createDate: Date, updatedDate: Date}}
 );
 
-export const TaskModel: Model<ITask> = model<ITask>('tasks', TaskSchema);
+export const SomethingModel: Model<ISomething> = model<ISomething>('somethings', SomethingSchema);

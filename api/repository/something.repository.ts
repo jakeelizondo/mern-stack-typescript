@@ -1,8 +1,8 @@
 import { connect, disconnect } from "../config/db.config";
-import { TaskModel } from '../model/task.model';
+import { SomethingModel } from '../model/something.model';
 import { APILogger } from '../logger/api.logger';
 
-export class TaskRepository {
+export class SomethingRepository {
 
     private logger: APILogger;
 
@@ -11,36 +11,36 @@ export class TaskRepository {
         this.logger = new APILogger()
     }
 
-    async getTasks() {
-        const tasks = await TaskModel.find({});
-        console.log('tasks:::', tasks);
-        return tasks;
+    async getSomethings() {
+        const somethings = await SomethingModel.find({});
+        console.log('somethings:::', somethings);
+        return somethings;
     }
 
-    async createTask(task) {
+    async createSomething(Something) {
         let data = {};
         try {
-            data = await TaskModel.create(task);
+            data = await SomethingModel.create(Something);
         } catch(err) {
             this.logger.error('Error::' + err);
         }
         return data;
     }
 
-    async updateTask(task) {
+    async updateSomething(Something) {
         let data = {};
         try {
-            data = await TaskModel.updateOne(task);
+            data = await SomethingModel.updateOne(Something);
         } catch(err) {
             this.logger.error('Error::' + err);
         }
         return data;
     }
 
-    async deleteTask(taskId) {
+    async deleteSomething(SomethingId) {
         let data: any = {};
         try {
-            data = await TaskModel.deleteOne({_id : taskId});
+            data = await SomethingModel.deleteOne({_id : SomethingId});
         } catch(err) {
             this.logger.error('Error::' + err);
         }

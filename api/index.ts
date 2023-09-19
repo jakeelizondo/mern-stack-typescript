@@ -9,7 +9,9 @@ App.set("port", port);
 const server = http.createServer(App);
 server.listen(port);
 
+
 const logger = new APILogger();
+console.log(`listening on port ${port}`)
 
 server.on("listening", function(): void {
     const addr = server.address();
